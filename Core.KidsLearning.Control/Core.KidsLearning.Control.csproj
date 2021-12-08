@@ -1,0 +1,136 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="PhyControl\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.KidsLearning.Classed\Core.KidsLearning.Classed.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="EngControl\Eng_Basic.cs" />
+    <Compile Update="Exten\ButtonCollections.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Exten\Checknowledge.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Exten\Choie4Choie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Exten\ChoiePanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Exten\frmAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Exten\frmWaitFormDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Exten\PanelPrint.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Exten\ScorePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Exten\UserControlPrint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Exten\UserControlPrint.Designer.cs">
+      <DependentUpon>UserControlPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Update="MathControl\Number\Math_Number1to50.cs" />
+    <Compile Update="MathControl\Number\Math_NumberArabicAndThai.cs" />
+    <Compile Update="MathControl\Number\Math_NumberString.cs" />
+    <Compile Update="MathControl\Number\Math_NumberToText.cs" />
+    <Compile Update="MathControl\Operate\Math_operate_.cs" />
+    <Compile Update="MathControl\Operate\Math_operate_.Designer.cs">
+      <DependentUpon>Math_operate_.cs</DependentUpon>
+    </Compile>
+    <Compile Update="MathControl\Operate\NumberOperater.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="ThaiControl\KorKaiChoie4Choie.cs" />
+    <Compile Update="ThaiControl\KorKaiChoieMultiChoie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UnitMeasure\balance.cs" />
+    <Compile Update="UnitMeasure\clock.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="EngControl\Eng_Basic.resx">
+      <DependentUpon>Eng_Basic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Exten\Checknowledge.resx">
+      <DependentUpon>Checknowledge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Exten\Choie4Choie.resx">
+      <DependentUpon>Choie4Choie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Exten\ChoiePanel.resx">
+      <DependentUpon>ChoiePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Exten\ScorePanel.resx">
+      <DependentUpon>ScorePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Exten\UserControlPrint.resx">
+      <DependentUpon>UserControlPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MathControl\Number\Math_Number1to50.resx">
+      <DependentUpon>Math_Number1to50.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MathControl\Number\Math_NumberArabicAndThai.resx">
+      <DependentUpon>Math_NumberArabicAndThai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MathControl\Number\Math_NumberString.resx">
+      <DependentUpon>Math_NumberString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MathControl\Number\Math_NumberToText.resx">
+      <DependentUpon>Math_NumberToText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MathControl\Operate\Math_operate_.resx">
+      <DependentUpon>Math_operate_.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MathControl\Operate\NumberOperater.resx">
+      <DependentUpon>NumberOperater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThaiControl\KorKaiChoie4Choie.resx">
+      <DependentUpon>KorKaiChoie4Choie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThaiControl\KorKaiChoieMultiChoie.resx">
+      <DependentUpon>KorKaiChoieMultiChoie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UnitMeasure\clock.resx">
+      <DependentUpon>clock.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

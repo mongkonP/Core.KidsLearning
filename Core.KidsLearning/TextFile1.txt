@@ -1,0 +1,5 @@
+﻿
+How I can get size of text?
+https://stackoverflow.com/questions/22804345/how-i-can-get-size-of-text/22804512#22804512
+
+
