@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ptnBio\" />
+    <Folder Include="ptnChem\" />
+    <Folder Include="ptnEng\" />
+    <Folder Include="ptnMth\" />
+    <Folder Include="ptnPhy\" />
+    <Folder Include="ptnSci\" />
+    <Folder Include="ptnTh\" />
+  </ItemGroup>
+
+</Project>

@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.KidsLearning.Classed",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.KidsLearning.Control", "Core.KidsLearning.Control\Core.KidsLearning.Control.csproj", "{2F7FC744-068E-46B1-8189-5B8B9D56FE15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.KidsLearning.Print", "Core.KidsLearning.Print\Core.KidsLearning.Print.csproj", "{2EA0092C-6529-4940-8E5A-FBEC9D66F55F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.KidsLearning.ChoiceTest", "Core.KidsLearning.ChoiceTest\Core.KidsLearning.ChoiceTest.csproj", "{CF8ACABD-82A6-474A-A517-DE58D1FBECCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{2F7FC744-068E-46B1-8189-5B8B9D56FE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F7FC744-068E-46B1-8189-5B8B9D56FE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F7FC744-068E-46B1-8189-5B8B9D56FE15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EA0092C-6529-4940-8E5A-FBEC9D66F55F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EA0092C-6529-4940-8E5A-FBEC9D66F55F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EA0092C-6529-4940-8E5A-FBEC9D66F55F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EA0092C-6529-4940-8E5A-FBEC9D66F55F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF8ACABD-82A6-474A-A517-DE58D1FBECCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF8ACABD-82A6-474A-A517-DE58D1FBECCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF8ACABD-82A6-474A-A517-DE58D1FBECCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF8ACABD-82A6-474A-A517-DE58D1FBECCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

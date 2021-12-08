@@ -16,6 +16,33 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="TORServices.DB">
+      <HintPath>bin\Debug\net5.0-windows\TORServices.DB.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Drawings">
+      <HintPath>bin\Debug\net5.0-windows\TORServices.Drawings.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Ext">
+      <HintPath>bin\Debug\net5.0-windows\TORServices.Ext.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Forms">
+      <HintPath>bin\Debug\net5.0-windows\TORServices.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Maths">
+      <HintPath>bin\Debug\net5.0-windows\TORServices.Maths.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Network">
+      <HintPath>bin\Debug\net5.0-windows\TORServices.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.PathFile">
+      <HintPath>bin\Debug\net5.0-windows\TORServices.PathFile.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Systems">
+      <HintPath>bin\Debug\net5.0-windows\TORServices.Systems.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="frm\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
