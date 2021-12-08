@@ -12,7 +12,7 @@ using TORServices.Ext;
 using Core.KidsLearning.Classed.Exten;
 using static TORServices.Maths.extMath;
 using TORServices.Drawings;
-namespace Core.KidsLearning.clss.plnt
+namespace Core.KidsLearning.Print
 {
 
     public class prnMath_Num : prnClass

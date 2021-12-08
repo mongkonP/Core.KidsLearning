@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Core.KidsLearning.clss.plnt
+namespace Core.KidsLearning.Print
 {
    public  class prnMath_Geometry : prnClass
     {

@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static Core.KidsLearning.Classed.Maths;
 
-namespace Core.KidsLearning.clss.plnt
+namespace Core.KidsLearning.Print
 {
    public class prnMath_Equation:prnClass
     {

@@ -11,8 +11,53 @@
     <Folder Include="ptnChem\" />
     <Folder Include="ptnSci\" />
     <Folder Include="ptnTh\" />
-    <Folder Include="ptnEng\" />
-    <Folder Include="ptnMth\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="5.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.KidsLearning.Classed\Core.KidsLearning.Classed.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>X:\DATA_LAB\DATA_LAB\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelLibrary">
+      <HintPath>X:\DATA_LAB\DATA_LAB\ExcelLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Drawings">
+      <HintPath>..\..\..\testClassTOR\TORServices\TORServices.Drawings\bin\Debug\TORServices.Drawings.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Ext">
+      <HintPath>..\..\..\testClassTOR\TORServices\TORServices.Ext\bin\Debug\net5.0\TORServices.Ext.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Forms">
+      <HintPath>..\..\..\testClassTOR\TORServices\TORServices.Forms\bin\Debug\TORServices.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Maths">
+      <HintPath>..\..\..\testClassTOR\TORServices\TORServices.Maths\bin\Debug\TORServices.Maths.dll</HintPath>
+    </Reference>
+    <Reference Include="TORServices.Systems">
+      <HintPath>..\..\..\testClassTOR\TORServices\TORServices.Systems\bin\Debug\TORServices.Systems.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

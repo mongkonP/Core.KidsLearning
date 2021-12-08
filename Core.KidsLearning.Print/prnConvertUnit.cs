@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.KidsLearning.clss.plnt
+namespace Core.KidsLearning.Print
 {
     public  class prnConvertUnit:prnClass
     {

@@ -9,39 +9,37 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Core.KidsLearning.clss.plnt.prnMath
+namespace Core.KidsLearning.Print
 {
-  public   class prnMath_Numberline : prnClass
+   public class prnMath_Fraction : prnClass
     {
-
         #region Variables
 
         int minValue, maxValue;
         int countC = 13;
         // List<listNum_A_B> listNum_A_Bs = new List<listNum_A_B>();
         #endregion
-        public prnMath_Numberline()
+        public prnMath_Fraction()
         {
 
-            _ReportHeader = "การทดสอบ เกี่ยวกับ เส้นจำนวน ";//Please convert the following units to be correct. 
-
+            _ReportHeader = "การทดสอบ เกี่ยวกับ เศษส่วน ";//Please convert the following units to be correct. 
+    
         }
 
-       
+
         int ic = 0;
-        #region Print Page Numberline_1
+        #region Print Page Fraction_1
 
 
-        public void PrintFromNumberline_1(int count = 10)
+        public void PrintFromFraction_1(int count = 10)
         {
 
-            _ReportToppic = "ให้วาดเส้นจำนวน ต่อไปนี้ โดยใช้จุดเริ่มต้นเป็น 0 ";
-          
+            _ReportToppic = "ให้เขียนเศษส่วนเกินต่อไปนี้ให้เป็นจำนวนคละ ";
             System.Windows.Forms.PrintDialog printDialog = new System.Windows.Forms.PrintDialog();
             printDialog.Document = _printDocument;
             printDialog.UseEXDialog = true;
             ic = 0;
-            //Get the document
+
             if (System.Windows.Forms.DialogResult.OK == printDialog.ShowDialog())
             {
                 bNewPage = true;
@@ -49,7 +47,7 @@ namespace Core.KidsLearning.clss.plnt.prnMath
                 iPageAll = count;
                 iPage = 1;
 
-                _printDocument.PrintPage += new PrintPageEventHandler(PrintFromNumberline_1PrintPage);
+                _printDocument.PrintPage += new PrintPageEventHandler(PrintFromFraction_1PrintPage);
                 _printDocument.BeginPrint += new PrintEventHandler((o, s) =>
                 {
 
@@ -63,23 +61,27 @@ namespace Core.KidsLearning.clss.plnt.prnMath
 
         }
 
-        protected void PrintFromNumberline_1PrintPage(object sender, PrintPageEventArgs e)
+        protected void PrintFromFraction_1PrintPage(object sender, PrintPageEventArgs e)
         {
 
             //Loop till all the grid rows not get printed
             if (bFirstPage) printDocumentNewPage(sender, e);
             // System.Windows.Forms.MessageBox.Show("page " + iPage);
             int yC = 120, xC = 100;
-            
+            int w = 100, h = 40;
             for (int i = 0; i < 8; i++)
             {
               
-                string Eq =  $"จำนวน  {RandomNumberGenerator.GetInt32(-10,10)} ";
-               
-                e.Graphics.DrawImage(Properties.Resources.เส้นจำนวน__10_ถึง_14, xC-60, yC + 60 );
-                e.Graphics.DrawString(Eq, fontDetail, new SolidBrush(Color.Black), xC + 10, yC);
+                int a = RandomNumberGenerator.GetInt32(3, 10);
+                int b = RandomNumberGenerator.GetInt32(1, 10);
+                int c = RandomNumberGenerator.GetInt32(1, a-1);
+                int d = a * b + c;
+                e.Graphics.DrawFraction(b,d, a, xC + 10, yC,false,false,false);
+                e.Graphics.DrawString(" = ", new Font("Angsana New", 20), new SolidBrush(Color.Black), xC + 120, yC + 20);
+                e.Graphics.DrawFraction(b, d, a, xC + 200, yC, true, true, false);
 
-                yC += 120;
+
+                yC += 100;
 
             }
 
@@ -102,20 +104,18 @@ namespace Core.KidsLearning.clss.plnt.prnMath
 
         #endregion
 
+        #region Print Page Fraction_2
 
-        #region Print Page Numberline_2
 
-
-        public void PrintFromNumberline_2(int count = 10)
+        public void PrintFromFraction_2(int count = 10)
         {
 
-            _ReportToppic = "ให้วาดเส้นจำนวนในการหาค่า ต่อไปนี้";
-
+            _ReportToppic = "ให้ผล บวก ลบ เศษส่วนต่อไป ";
             System.Windows.Forms.PrintDialog printDialog = new System.Windows.Forms.PrintDialog();
             printDialog.Document = _printDocument;
             printDialog.UseEXDialog = true;
             ic = 0;
-            //Get the document
+
             if (System.Windows.Forms.DialogResult.OK == printDialog.ShowDialog())
             {
                 bNewPage = true;
@@ -123,7 +123,7 @@ namespace Core.KidsLearning.clss.plnt.prnMath
                 iPageAll = count;
                 iPage = 1;
 
-                _printDocument.PrintPage += new PrintPageEventHandler(PrintFromNumberline_2PrintPage);
+                _printDocument.PrintPage += new PrintPageEventHandler(PrintFromFraction_2PrintPage);
                 _printDocument.BeginPrint += new PrintEventHandler((o, s) =>
                 {
 
@@ -136,24 +136,31 @@ namespace Core.KidsLearning.clss.plnt.prnMath
             }
 
         }
-   
-        protected void PrintFromNumberline_2PrintPage(object sender, PrintPageEventArgs e)
+
+        protected void PrintFromFraction_2PrintPage(object sender, PrintPageEventArgs e)
         {
 
             //Loop till all the grid rows not get printed
             if (bFirstPage) printDocumentNewPage(sender, e);
             // System.Windows.Forms.MessageBox.Show("page " + iPage);
             int yC = 120, xC = 100;
-
+            int w = 100, h = 40;
             for (int i = 0; i < 8; i++)
             {
 
-                string Eq = $"{RandomNumberGenerator.GetInt32(-5, 10)}  +  { RandomNumberGenerator.GetInt32(-5, 10)} = ?";// $"{RandomNumberGenerator.GetInt32(-5, 10)} {RandomOP()} { RandomNumberGenerator.GetInt32(-5, 10)} = ?";
+                int a = RandomNumberGenerator.GetInt32(3, 10);
+                int _b = RandomNumberGenerator.GetInt32(1, 10);
+                int _c = RandomNumberGenerator.GetInt32(1,10);
+                int b = Math.Max(_b, _c);
+                int c = Math.Min(_b, _c);
 
-                e.Graphics.DrawImage(Properties.Resources.เส้นจำนวน__10_ถึง_14, xC - 60, yC + 60);
-                e.Graphics.DrawString(Eq, fontDetail, new SolidBrush(Color.Black), xC + 10, yC);
+                e.Graphics.DrawFraction(0, b, a, xC + 10, yC,false,false,false,false);
+                e.Graphics.DrawString((RandomNumberGenerator.GetInt32(1, 1000)>500)?" + ":" - ", new Font("Angsana New", 22), new SolidBrush(Color.Black), xC + 70, yC + 15);
+                e.Graphics.DrawFraction(0, c, a, xC + 80, yC, false, false, false, false);
+                e.Graphics.DrawString( " = ", new Font("Angsana New", 22), new SolidBrush(Color.Black), xC + 135, yC + 15);
+                e.Graphics.DrawFraction(0, c, a, xC + 150, yC, true, false, true,false);
 
-                yC += 120;
+                yC += 100;
 
             }
 
@@ -175,5 +182,8 @@ namespace Core.KidsLearning.clss.plnt.prnMath
         }
 
         #endregion
+
     }
+
+
 }

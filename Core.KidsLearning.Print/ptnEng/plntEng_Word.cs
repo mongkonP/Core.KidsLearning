@@ -13,7 +13,7 @@ using OfficeOpenXml;
 using TORServices.Drawings;
 using TORServices.Systems;
 
-namespace Core.KidsLearning.clss.plnt
+namespace Core.KidsLearning.Print
 {
     public class plntEng_Word : prnClass
     {
