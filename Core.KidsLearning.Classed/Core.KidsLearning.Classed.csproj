@@ -21,15 +21,19 @@
     </Reference>
     <Reference Include="TORServices.Drawings">
       <HintPath>..\..\..\testClassTOR\TORServices\TORServices.Drawings\bin\Debug\TORServices.Drawings.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="TORServices.Ext">
       <HintPath>..\..\..\testClassTOR\TORServices\TORServices.Ext\obj\Debug\net5.0\TORServices.Ext.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="TORServices.Maths">
       <HintPath>..\..\..\testClassTOR\TORServices\TORServices.Maths\bin\Debug\TORServices.Maths.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="TORServices.PathFile">
       <HintPath>..\..\..\testClassTOR\TORServices\TORServices.PathFile\bin\Debug\TORServices.PathFile.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 

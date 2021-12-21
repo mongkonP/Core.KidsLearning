@@ -1,6 +1,5 @@
 using Core.KidsLearning.Classed;
-using Core.KidsLearning.clss.plnt;
-using Core.KidsLearning.clss.plnt.prnMath;
+using Core.KidsLearning.frm;
 using Core.KidsLearning.test_code;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ namespace Core.KidsLearning
             Application.SetCompatibleTextRenderingDefault(false);
 
       //  new prnMath_Equation().PrintFromEquation_AddSub_1(2,100,1000, Maths.OperatorSelect.AddSub);
-            Application.Run(new frmLoadFile());
+            Application.Run(new frmMain());
            // DataTable dt = new DataTable();
            // var v = dt.Compute("5-3+6", "");
          //  MessageBox.Show(Exts.ConvertMoney(75));
