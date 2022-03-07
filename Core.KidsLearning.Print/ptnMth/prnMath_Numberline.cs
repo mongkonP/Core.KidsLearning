@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Core.KidsLearning.Print.prnMath
+namespace Core.KidsLearning.Print
 {
   public   class prnMath_Numberline : prnClass
     {

@@ -76,7 +76,7 @@ namespace Core.KidsLearning.Print
                 int b = RandomNumberGenerator.GetInt32(1, 10);
                 int c = RandomNumberGenerator.GetInt32(1, a-1);
                 int d = a * b + c;
-                e.Graphics.DrawFraction(b,d, a, xC + 10, yC,false,false,false);
+                e.Graphics.DrawFraction(0,d, a, xC + 10, yC,false,false,false);
                 e.Graphics.DrawString(" = ", new Font("Angsana New", 20), new SolidBrush(Color.Black), xC + 120, yC + 20);
                 e.Graphics.DrawFraction(b, d, a, xC + 200, yC, true, true, false);
 
@@ -110,7 +110,7 @@ namespace Core.KidsLearning.Print
         public void PrintFromFraction_2(int count = 10)
         {
 
-            _ReportToppic = "ให้ผล บวก ลบ เศษส่วนต่อไป ";
+            _ReportToppic = "ให้ผล บวก ลบ เศษส่วนต่อไปนี้ ";
             System.Windows.Forms.PrintDialog printDialog = new System.Windows.Forms.PrintDialog();
             printDialog.Document = _printDocument;
             printDialog.UseEXDialog = true;
@@ -182,6 +182,118 @@ namespace Core.KidsLearning.Print
         }
 
         #endregion
+
+
+        #region Print Page LongDivision_1
+
+      public  enum LongDivisionOption { IntegerNum, MixedNum, DecimalNum,RandomNum}
+
+        private LongDivisionOption longDivisionOption;
+        public void PrintFromLongDivision_1(int count = 10, LongDivisionOption _longDivisionOption = LongDivisionOption.IntegerNum)
+        {
+            longDivisionOption = _longDivisionOption;
+            _ReportToppic = "หาผลหาร ต่อไปนี้";
+            System.Windows.Forms.PrintDialog printDialog = new System.Windows.Forms.PrintDialog();
+            printDialog.Document = _printDocument;
+            printDialog.UseEXDialog = true;
+            ic = 0;
+
+            if (System.Windows.Forms.DialogResult.OK == printDialog.ShowDialog())
+            {
+                bNewPage = true;
+                bMorePagesToPrint = true;
+                iPageAll = count;
+                iPage = 1;
+
+                _printDocument.PrintPage += new PrintPageEventHandler(PrintFromLongDivision_1PrintPage);
+                _printDocument.BeginPrint += new PrintEventHandler((o, s) =>
+                {
+
+                    bFirstPage = true;
+                    bNewPage = true;
+                });
+
+                _printDocument.DocumentName = _ReportHeader + string.Format("{0:yyyyMMdd hhmmss}", DateTime.Now);
+                _printDocument.Print();
+            }
+
+        }
+
+        protected void PrintFromLongDivision_1PrintPage(object sender, PrintPageEventArgs e)
+        {
+
+            //Loop till all the grid rows not get printed
+            if (bFirstPage) printDocumentNewPage(sender, e);
+            // System.Windows.Forms.MessageBox.Show("page " + iPage);
+            int yC = 120, xC = 100;
+            int w = 100, h = 40;
+            for (int i = 0; i < 5; i++)
+            {
+
+                int a = RandomNumberGenerator.GetInt32(2, 9);
+                int _b = RandomNumberGenerator.GetInt32(15, 100);
+                int b = 0 ;
+                if (longDivisionOption == LongDivisionOption.IntegerNum)
+                {
+                    b = a * _b;
+                }
+                else if (longDivisionOption == LongDivisionOption.DecimalNum || longDivisionOption == LongDivisionOption.MixedNum)
+                {
+                    b = a * _b + RandomNumberGenerator.GetInt32(1, _b);
+                }
+                else if (longDivisionOption == LongDivisionOption.RandomNum)
+                {
+                    if (RandomNumberGenerator.GetInt32(1, 1000) > 500)
+                    {
+                        b = a * _b;
+                    }
+                    else
+                    {
+                        b = a * _b + RandomNumberGenerator.GetInt32(1, _b);
+                    }
+                
+                }
+                
+
+                e.Graphics.DrawString($"{b} ÷ { a} = ? ", new Font("Angsana New", 22), new SolidBrush(Color.Black), xC + 50, yC + 15);
+                
+                e.Graphics.DrawLine(new Pen(Color.Black, 1), xC + 250, yC , xC + 500, yC);
+                 e.Graphics.DrawLine(new Pen(Color.Black, 1), xC + 250, yC, xC + 250, yC + 25);
+                //e.Graphics.DrawString(")", new Font("Angsana New", 28), new SolidBrush(Color.Black), xC + 200, yC);
+                yC += 32;
+                e.Graphics.DrawLine(new Pen(Color.Black, 1), xC + 180, yC, xC + 240, yC);
+                e.Graphics.DrawLine(new Pen(Color.Black, 1), xC + 250, yC, xC + 500, yC); yC += 30;
+                e.Graphics.DrawLine(new Pen(Color.Black, 1), xC + 250, yC, xC + 500, yC); yC += 30;
+                e.Graphics.DrawLine(new Pen(Color.Black, 1), xC + 250, yC, xC + 500, yC); yC += 30;
+                e.Graphics.DrawLine(new Pen(Color.Black, 1), xC + 250, yC, xC + 500, yC); yC += 30;
+                e.Graphics.DrawLine(new Pen(Color.Black, 1), xC + 250, yC, xC + 500, yC); yC += 30;
+                yC += 15;
+
+            }
+
+            if (iPage > iPageAll - 1)
+            {
+                bNewPage = false;
+                bMorePagesToPrint = false;
+            }
+
+            if (bNewPage)
+            {
+                printDocumentNewPage(sender, e);
+            }
+
+            iPage++;
+
+            //If more lines exist, print another page.
+            e.HasMorePages = (bMorePagesToPrint) ? true : false;
+        }
+
+        #endregion
+
+
+
+
+
 
     }
 

@@ -353,5 +353,425 @@ namespace Core.KidsLearning.Print
 
         #endregion
 
+
+
+        #region Print Page EngWord_2
+
+
+        public void PrintFromEngWord_2(int count = 10)
+        {
+
+            _ReportToppic = "ฝึกเขียน และ อ่านคำศัพท์ต่อไปนี้"; ;
+
+
+            System.Windows.Forms.PrintDialog printDialog = new System.Windows.Forms.PrintDialog();
+            printDialog.Document = _printDocument;
+            printDialog.UseEXDialog = true;
+            ic = 0;
+            //Get the document
+            if (System.Windows.Forms.DialogResult.OK == printDialog.ShowDialog())
+            {
+                bNewPage = true;
+                bMorePagesToPrint = true;
+                iPageAll = count;
+                iPage = 1;
+
+                FileInfo existingFile = new FileInfo(@"D:\T_MEGA\เรียนรู้ เติ้ล\Eng คำศัพท์ 1.xlsx");
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                using (ExcelPackage package = new ExcelPackage(existingFile))
+                {
+                    //get the first worksheet in the workbook
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[1];
+                    int colCount = worksheet.Dimension.End.Column;  //get Column Count
+                    int rowCount = worksheet.Dimension.End.Row;     //get row count
+                    lstWord = new List<string>();
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+
+
+                        if (!string.IsNullOrEmpty(worksheet.Cells[row, 1].Value?.ToString().Trim()))
+                            lstWord.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                    }
+
+                };
+
+
+                _printDocument.PrintPage += new PrintPageEventHandler(PrintFromEngWord_2PrintPage);
+                _printDocument.BeginPrint += new PrintEventHandler((o, s) =>
+                {
+
+                    bFirstPage = true;
+                    bNewPage = true;
+                });
+
+                _printDocument.DocumentName = _ReportHeader + string.Format("{0:yyyyMMdd hhmmss}", DateTime.Now);
+                _printDocument.Print();
+            }
+
+        }
+
+        protected void PrintFromEngWord_2PrintPage(object sender, PrintPageEventArgs e)
+        {
+
+            //Loop till all the grid rows not get printed
+            if (bFirstPage) printDocumentNewPage(sender, e);
+            // System.Windows.Forms.MessageBox.Show("page " + iPage);
+            int yC = 150, xC = 100;
+            int w = 100, h = 35;
+
+            int count = 14;
+            // DrawTable
+            for (int ip = 0; ip <= count; ip++)
+            {
+                e.Graphics.DrawLine(new Pen(Color.Black, 1), xC, yC, xC + 620, yC);
+                yC += h;
+            }
+
+            yC = 150; xC = 100;
+            e.Graphics.DrawLine(new Pen(Color.Black, 1), xC, yC, xC, yC + h * count);
+
+            e.Graphics.DrawString("  คำศัพท์   ", fontDetail, new SolidBrush(Color.Black), xC + 20, yC + 5); xC += 100;
+            e.Graphics.DrawLine(new Pen(Color.Black, 1), xC, yC, xC, yC + h * count);
+
+            e.Graphics.DrawString("พยัญชนะต้น", fontDetail, new SolidBrush(Color.Black), xC , yC + 5); xC += 100;
+            e.Graphics.DrawLine(new Pen(Color.Black, 1), xC, yC, xC, yC + h * count);
+
+            e.Graphics.DrawString(" สระ ", fontDetail, new SolidBrush(Color.Black), xC + 20, yC + 5); xC += 100;
+            e.Graphics.DrawLine(new Pen(Color.Black, 1), xC, yC, xC, yC + h * count);
+
+            e.Graphics.DrawString(" ตัวสะกด ", fontDetail, new SolidBrush(Color.Black), xC + 20, yC + 5); xC += 100;
+            e.Graphics.DrawLine(new Pen(Color.Black, 1), xC, yC, xC, yC + h * count);
+
+            e.Graphics.DrawString(" คำอ่าน ", fontDetail, new SolidBrush(Color.Black), xC + 20, yC + 5); xC += 220;
+            e.Graphics.DrawLine(new Pen(Color.Black, 1), xC, yC, xC, yC + h * count);
+
+            yC += h; xC = 100;
+            for (int ip = 1; ip <= count - 1; ip++)
+            {
+
+
+                e.Graphics.DrawString(lstWord[RandomNumberGenerator.GetInt32(0, lstWord.Count - 1)], fontDetail, new SolidBrush(Color.Black), xC + 20, yC + 5);
+
+                yC += h;
+            }
+
+
+
+            if (iPage > iPageAll - 1)
+            {
+                bNewPage = false;
+                bMorePagesToPrint = false;
+            }
+
+            if (bNewPage)
+            {
+                printDocumentNewPage(sender, e);
+            }
+
+            iPage++;
+
+            //If more lines exist, print another page.
+            e.HasMorePages = (bMorePagesToPrint) ? true : false;
+        }
+
+        #endregion
+
+
+        #region Print Page Sentences_1
+        //  ...........  Like/give/need/see/want ...........
+        //  ...........  eat ...........
+        // that/this is ................
+        //............ is ...............
+        //have has
+        //play
+        //live at
+        List<string> n_1 = new List<string>() { "I","You", "We","They","She", "He","It", "Mother", "Father", "Child", "Wife", "Daughter", "Son" ,
+            "Brother", "Daddy","Granddaughter","Grandchild","Grandfather","Grandmother","Grandson","Sister","Baby"};
+
+        List<string> lstLike ;
+        List<string> lstEat;
+        List<string> lstThatThis;
+        List<string> lstIsAmAre;
+        List<string> lstPlay;
+        List<string> lstHaveHas;
+        List<string> vLike = new List<string>() { "like","see","give","need","want"};
+        List<string> ttLike = new List<string>() { "This","That","These" ,"Those" };
+        public void PrintFromSentences_1(int count = 10)
+        {
+
+            _ReportToppic = "ฝึกเขียน และ อ่านคำศัพท์ต่อไปนี้"; 
+
+
+            System.Windows.Forms.PrintDialog printDialog = new System.Windows.Forms.PrintDialog();
+            printDialog.Document = _printDocument;
+            printDialog.UseEXDialog = true;
+            ic = 0;
+            //Get the document
+            if (System.Windows.Forms.DialogResult.OK == printDialog.ShowDialog())
+            {
+                bNewPage = true;
+                bMorePagesToPrint = true;
+                iPageAll = count;
+                iPage = 1;
+
+                FileInfo existingFile = new FileInfo(@"D:\T_MEGA\เรียนรู้ เติ้ล\Sentences_1.xlsx");
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                using (ExcelPackage package = new ExcelPackage(existingFile))
+                {
+                    //get the first worksheet in the workbook
+                    lstLike = new List<string>();
+                    lstEat = new List<string>();
+                    lstThatThis = new List<string>();
+                    lstIsAmAre = new List<string>();
+                    lstPlay = new List<string>();
+                    lstHaveHas = new List<string>();
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];//EAT
+                    int colCount = worksheet.Dimension.End.Column;  //get Column Count
+                    int rowCount = worksheet.Dimension.End.Row;     //get row count
+                    
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+
+
+                        if (!string.IsNullOrEmpty(worksheet.Cells[row, 1].Value?.ToString().Trim()))
+                        {
+                            if (!worksheet.Cells[row, 1].Value.ToString().Trim().Contains(" "))
+                            {
+                                lstLike.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                                lstEat.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                                lstThatThis.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                                lstHaveHas.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                              
+                            }
+                        
+                        }
+                    }
+                    worksheet = package.Workbook.Worksheets[1];//ห้องต่างๆ ในโรงเรียน
+                    colCount = worksheet.Dimension.End.Column;  //get Column Count
+                    rowCount = worksheet.Dimension.End.Row;     //get row count
+
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+
+
+                        if (!string.IsNullOrEmpty(worksheet.Cells[row, 1].Value?.ToString().Trim()))
+                        {
+                            if (!worksheet.Cells[row, 1].Value.ToString().Trim().Contains(" "))
+                            {
+                                lstLike.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                                lstThatThis.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                            }
+
+                        }
+                    }
+
+                    worksheet = package.Workbook.Worksheets[2];//อาชีพ
+                    colCount = worksheet.Dimension.End.Column;  //get Column Count
+                    rowCount = worksheet.Dimension.End.Row;     //get row count
+
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+
+
+                        if (!string.IsNullOrEmpty(worksheet.Cells[row, 1].Value?.ToString().Trim()))
+                        {
+                            if (!worksheet.Cells[row, 1].Value.ToString().Trim().Contains(" "))
+                            {
+                                lstIsAmAre.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+
+                            }
+
+                        }
+                    }
+
+                    worksheet = package.Workbook.Worksheets[3];//สัตว์
+                    colCount = worksheet.Dimension.End.Column;  //get Column Count
+                    rowCount = worksheet.Dimension.End.Row;     //get row count
+
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+
+
+                        if (!string.IsNullOrEmpty(worksheet.Cells[row, 1].Value?.ToString().Trim()))
+                        {
+                            if (!worksheet.Cells[row, 1].Value.ToString().Trim().Contains(" "))
+                            {
+
+                                lstLike.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                                lstEat.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                                lstThatThis.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                                lstHaveHas.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                            }
+
+                        }
+                    }
+
+                    worksheet = package.Workbook.Worksheets[4];//กีฬา
+                    colCount = worksheet.Dimension.End.Column;  //get Column Count
+                    rowCount = worksheet.Dimension.End.Row;     //get row count
+
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+
+
+                        if (!string.IsNullOrEmpty(worksheet.Cells[row, 1].Value?.ToString().Trim()))
+                        {
+                            if (!worksheet.Cells[row, 1].Value.ToString().Trim().Contains(" "))
+                            {
+                                lstLike.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                                lstPlay.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                            }
+
+                        }
+                    }
+
+                    worksheet = package.Workbook.Worksheets[5];//สี
+                    colCount = worksheet.Dimension.End.Column;  //get Column Count
+                    rowCount = worksheet.Dimension.End.Row;     //get row count
+
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+
+
+                        if (!string.IsNullOrEmpty(worksheet.Cells[row, 1].Value?.ToString().Trim()))
+                        {
+                            if (!worksheet.Cells[row, 1].Value.ToString().Trim().Contains(" "))
+                            {
+                                lstLike.Add(worksheet.Cells[row, 1].Value?.ToString().Trim());
+                            }
+
+                        }
+                    }
+                    
+                };
+
+
+                _printDocument.PrintPage += new PrintPageEventHandler(PrintFromSentences_1PrintPage);
+                _printDocument.BeginPrint += new PrintEventHandler((o, s) =>
+                {
+
+                    bFirstPage = true;
+                    bNewPage = true;
+                });
+
+                _printDocument.DocumentName = _ReportHeader + string.Format("{0:yyyyMMdd hhmmss}", DateTime.Now);
+                _printDocument.Print();
+            }
+
+        }
+
+        protected void PrintFromSentences_1PrintPage(object sender, PrintPageEventArgs e)
+        {
+
+            //Loop till all the grid rows not get printed
+            if (bFirstPage) printDocumentNewPage(sender, e);
+            // System.Windows.Forms.MessageBox.Show("page " + iPage);
+            int yC = 150, xC = 100;
+            int w = 100, h = 35;
+
+            int count = 14;
+            // DrawTable
+
+
+            yC = 150; xC = 100;
+            int rr;
+            string s = "";
+            for (int ip = 0; ip < 8; ip++)
+            {
+                xC = 100;
+                rr = RandomNumberGenerator.GetInt32(0, 5);
+                
+                //live at
+
+                if (rr == 0)//  ...........  Like/give/need/see/want ...........
+                {
+                    s = n_1[RandomNumberGenerator.GetInt32(0, n_1.Count - 1)] + "    "+vLike[RandomNumberGenerator.GetInt32(0, vLike.Count - 1)] +"      " + lstLike[RandomNumberGenerator.GetInt32(0, lstLike.Count - 1)];
+                }
+                else if(rr == 1)//  ...........  eat ...........
+                {
+                    s = n_1[RandomNumberGenerator.GetInt32(0, n_1.Count - 1)] + "    eat      " + lstEat [RandomNumberGenerator.GetInt32(0, lstEat.Count - 1)];
+                }
+                else if (rr == 2)//............ is/am/are ...............
+                {
+                    string ss = n_1[RandomNumberGenerator.GetInt32(0, n_1.Count - 1)];
+
+                    if (ss == "I")
+                    {
+                        s = ss + "   am     " + lstIsAmAre[RandomNumberGenerator.GetInt32(0, lstIsAmAre.Count - 1)];
+                    }
+                    else if (ss == "We" || ss == "They")
+                    {
+                        s = ss + "   are     " + lstIsAmAre[RandomNumberGenerator.GetInt32(0, lstIsAmAre.Count - 1)];
+                    }
+                    else
+                    {
+                        s = ss + "    is      " + lstIsAmAre[RandomNumberGenerator.GetInt32(0, lstIsAmAre.Count - 1)];
+                    }
+                    
+                }
+                else if (rr == 3) // that/this/These / Those is ................
+                {
+                    
+                        s = ttLike[RandomNumberGenerator.GetInt32(0, ttLike.Count-1)] + "    is      " + lstEat[RandomNumberGenerator.GetInt32(0, lstEat.Count - 1)];
+                    
+                }
+                else if (rr == 4)  //have has
+                {
+                    string ss = n_1[RandomNumberGenerator.GetInt32(0, n_1.Count - 1)];
+                    if (ss == "I" || ss ==  "You" || ss == "We" || ss == "They")
+                    {
+                        s = n_1[RandomNumberGenerator.GetInt32(0, n_1.Count - 1)] + "    have      " + lstHaveHas[RandomNumberGenerator.GetInt32(0, lstHaveHas.Count - 1)];
+                    }
+                    else
+                    {
+                        s = n_1[RandomNumberGenerator.GetInt32(0, n_1.Count - 1)] + "    has      " + lstHaveHas[RandomNumberGenerator.GetInt32(0, lstHaveHas.Count - 1)];
+                    }
+
+                }
+                else if (rr == 5)  //play
+                {
+                    s = n_1[RandomNumberGenerator.GetInt32(0, n_1.Count - 1)] + "  play     " + lstPlay[RandomNumberGenerator.GetInt32(0, lstPlay.Count - 1)];
+
+                }
+                e.Graphics.DrawString(" ประโยค ", fontDetail, new SolidBrush(Color.Black), xC + 20, yC + 5);
+                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(xC + 20, yC + 8, 80, 25));
+                e.Graphics.DrawString("   " + s, fontDetail, new SolidBrush(Color.Black), xC + 100, yC + 8);
+                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(xC + 100, yC + 8, 400, 25));
+
+                yC += 25;
+                e.Graphics.DrawString(" คำอ่าน ", fontDetail, new SolidBrush(Color.Black), xC + 20, yC + 5);
+                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(xC + 20, yC + 8, 80, 25));
+                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(xC + 100, yC + 8, 400, 25));
+                yC += 25;
+                e.Graphics.DrawString(" คำแปล ", fontDetail, new SolidBrush(Color.Black), xC + 20, yC + 5);
+                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(xC + 20, yC + 8, 80, 25));
+                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(xC + 100, yC + 8, 400, 25));
+
+                yC += 35;
+            }
+
+
+            yC += h; xC = 100;
+
+
+            if (iPage > iPageAll - 1)
+            {
+                bNewPage = false;
+                bMorePagesToPrint = false;
+            }
+
+            if (bNewPage)
+            {
+                printDocumentNewPage(sender, e);
+            }
+
+            iPage++;
+
+            //If more lines exist, print another page.
+            e.HasMorePages = (bMorePagesToPrint) ? true : false;
+        }
+
+        #endregion
+
     }
 }

@@ -22,8 +22,8 @@ namespace Core.KidsLearning
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-      //  new prnMath_Equation().PrintFromEquation_AddSub_1(2,100,1000, Maths.OperatorSelect.AddSub);
-            Application.Run(new frmMain());
+    new Core.KidsLearning.Print.prnMath_Fraction().PrintFromLongDivision_1(30, Print.prnMath_Fraction.LongDivisionOption.MixedNum);
+            Application.Run(new frm.Form2());
            // DataTable dt = new DataTable();
            // var v = dt.Compute("5-3+6", "");
          //  MessageBox.Show(Exts.ConvertMoney(75));

@@ -29,33 +29,36 @@ namespace Core.KidsLearning.frm
         /// </summary>
         private void InitializeComponent()
         {
-            this.choie4Choie1 = new Core.KidsLearning.Control.Exten.Choie4Choie();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // choie4Choie1
+            // pictureBox1
             // 
-            this.choie4Choie1.Location = new System.Drawing.Point(56, -12);
-            this.choie4Choie1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.choie4Choie1.Name = "choie4Choie1";
-            this.choie4Choie1.Size = new System.Drawing.Size(1272, 622);
-            this.choie4Choie1.TabIndex = 0;
+            this.pictureBox1.Location = new System.Drawing.Point(226, 121);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(251, 240);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint_1);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1017, 568);
-            this.Controls.Add(this.choie4Choie1);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.Resize += new System.EventHandler(this.Form2_Resize);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Control.Exten.Choie4Choie choie4Choie1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
